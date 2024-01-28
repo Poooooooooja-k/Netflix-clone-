@@ -1,6 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { API_KEY } from '../../constants/Constants'
 import './Banner.css'
+import Axios from '../../Axios'
 const Banner = () => {
+    useEffect=(()=>{
+        Axios.get(`trending/all/week?api_key=${API_KEY}&language=en-US`).then((response=>{
+            console.log(response.data)
+        }))
+        }
+     ,[])
   return (
     <div className='banner'>
       <div className='content'>
