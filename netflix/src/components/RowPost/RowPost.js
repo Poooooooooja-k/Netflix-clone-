@@ -13,7 +13,7 @@ function RowPost(props) {
             setMovies(response.data.results)
            
         }).catch(err=>{
-            //  alert('error')
+            console.log("Error from Api:",err)
         })
     },[])
     const opts = {
@@ -25,14 +25,16 @@ function RowPost(props) {
       },
     };
     const handleMovie=(id)=>{
-        console.log(id)
+        console.log("id of movie:",id)
         Axios.get(`/movie/${id}/videos?api_key=${API_KEY}&language=en-US`).then(response=>{
           if(response.data.results.length!==0){
             console.log('hanlemovie:',response.data)
-            setUrlId(response.data.results)
+            setUrlId(response.data.results[0])
           }else{
             console.log('Array empty')
           }
+        }).catch(error=>{
+          console.log("Error From Onclick:",error)
         })
     }
   return (
